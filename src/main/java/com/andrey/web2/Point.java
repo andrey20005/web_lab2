@@ -8,5 +8,16 @@ public class Point {
     public double r;
     public boolean hit;
 
-    public Point(double x, double y, double r, Area area) {}
+    public Point(double x, double y, double r, Area area) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.hit = area.hit(this);
+    }
+
+    public Point(double x, double y, double r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+    }
 }

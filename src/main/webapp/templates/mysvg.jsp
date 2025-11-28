@@ -55,4 +55,21 @@
     <text id="R2" x="257" y="195" font-size="20" font-family="monospace">R/2</text>
     <text id="mR2" x="257" y="315" font-size="20" font-family="monospace">-R/2</text>
     <text id="mR" x="257" y="375" font-size="20" font-family="monospace">-R</text>
+
+    <%
+        if (request.getAttribute("point") != null) {
+            Point point = (Point) request.getAttribute("point");
+            String color;
+            if (point.hit) color = "green";
+            else color = "red";
+    %>
+    <circle
+            r="6"
+            cx="<%= 250 + point.x / point.r * 120%>"
+            cy="<%= 250 + point.y / point.r * -120%>"
+            fill="<%=color%>"
+    >
+    <%
+        }
+    %>
 </svg>

@@ -11,10 +11,10 @@
           width="600"
           height="600"></rect>
     <rect fill="#6399f7"
-          width="120" height="60"
-          x="130" y="190"></rect>
+          width="120" height="120"
+          x="130" y="250"></rect>
     <path d="M 250 130 A 120 120 0 0 1 370 250 L 250 250 Z" fill="#6399f7"></path>
-    <polygon fill="#6399f7" points="250,250 370,250, 250,310"></polygon>
+    <polygon fill="#6399f7" points="250,250 310,250, 250,310"></polygon>
     <line stroke="black" stroke-width="3"
           x1="20" y1="250"
           x2="480" y2="250"></line>

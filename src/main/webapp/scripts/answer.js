@@ -9,22 +9,28 @@ function setR(n) {
 let r = Number(document.querySelector("#r_ans").textContent)
 setR(r)
 
-svg = document.querySelector("svg")
-svg.addEventListener('click', (event) => {
-    // Получаем SVG-элемент
-    const svg = event.target;
-
-    // Создаем точку в SVG-координатах
-    const point = new DOMPoint();
-
-    // Устанавливаем координаты мыши (относительно viewport)
-    point.x = event.clientX;
-    point.y = event.clientY;
-
-    const svgPoint = point.matrixTransform(svg.getScreenCTM().inverse());
-
-    svgPoint.x = (svgPoint.x-250) / 120 * r
-    svgPoint.y = (250-svgPoint.y) / 120 * r
-    console.log(`X: ${svgPoint.x}, Y: ${svgPoint.y}`);
-    location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
-});
+// svg = document.querySelector("svg")
+// svg.addEventListener('click', (event) => {
+//     // Получаем SVG-элемент
+//     const svg = event.target;
+//
+//     // Создаем точку в SVG-координатах
+//     const point = new DOMPoint();
+//
+//     // Устанавливаем координаты мыши (относительно viewport)
+//     point.x = event.clientX;
+//     point.y = event.clientY;
+//
+//     const svgPoint = point.matrixTransform(svg.getScreenCTM().inverse());
+//
+//     svgPoint.x = (svgPoint.x-250) / 120 * r
+//     svgPoint.y = (250-svgPoint.y) / 120 * r
+//     console.log(`X: ${svgPoint.x}, Y: ${svgPoint.y}`);
+//     if (-4 <= svgPoint.x && svgPoint.x <= 4) {
+//         location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
+//     } else {
+//         svg.setCustomValidity("x не в [-4,4]")
+//         svg.reportValidity()
+//     }
+//
+// });

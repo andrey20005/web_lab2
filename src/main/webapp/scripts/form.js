@@ -53,5 +53,17 @@ svg.addEventListener('click', (event) => {
     svgPoint.x = (svgPoint.x-250) / 120 * r
     svgPoint.y = (250-svgPoint.y) / 120 * r
     console.log(`X: ${svgPoint.x}, Y: ${svgPoint.y}`);
-    location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
+    // location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
+
+    if (-4 <= svgPoint.x && svgPoint.x <= 4) {
+        if (-5 <= svgPoint.y && svgPoint.y <= 3) {
+            location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
+        } else {
+            document.querySelector('#calculate_form input[name="y"]').setCustomValidity("y не в [-5,3]")
+            document.querySelector('#calculate_form input[name="y"]').reportValidity()
+        }
+    } else {
+        document.querySelector('#calculate_form input[name="x"]:checked').setCustomValidity("x не в [-4,4]")
+        document.querySelector('#calculate_form input[name="x"]:checked').reportValidity()
+    }
 });

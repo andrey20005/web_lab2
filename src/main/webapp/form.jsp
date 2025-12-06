@@ -13,6 +13,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<jsp:useBean id="pointsBean" class="com.andrey.web2.Points" scope="session"/>--%>
+<%
+    Points pointsBean = CDI.current().select(Points.class).get();
+    Map<LocalDateTime, Point> points = pointsBean.getPoints();
+%>
 <html>
 <head>
     <title>form</title>
@@ -20,11 +24,11 @@
     <script defer src="scripts/form.js"></script>
 </head>
 <body>
-<%@include file="templates/header.jsp"%>
 <table id="main_table" class="layout-table">
     <tr>
         <td>
             <%@include file="templates/mysvg.jsp"%>
+<%--            <jsp:include page="templates/mysvg.jsp"/>--%>
         <td>
             <form id="calculate_form">
                 <!-- Группа для координаты X -->
@@ -77,8 +81,6 @@
                     <th>Res/err</th>
                 </tr>
                 <%
-                    Points pointsBean = CDI.current().select(Points.class).get();
-                    Map<LocalDateTime, Point> points = pointsBean.getPoints();
                     for (LocalDateTime time : points.keySet().stream().sorted(Comparator.reverseOrder()).toList()) {
                         Point point = points.get(time);
                 %>

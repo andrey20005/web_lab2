@@ -49,12 +49,11 @@ public class AreaCheckServlet extends HttpServlet {
                 area
         );
         points.addPoint(point);
-        points.getPoints().forEach((t, p) -> {
-            System.out.println(t + " " + p.x + " " + p.y + " " + p.r + " " + p.hit);
-        });
+        points.getPoints().forEach((t, p) -> System.out.println(t + " " + p.x + " " + p.y + " " + p.r + " " + p.hit));
         req.setAttribute("point", point);
-        System.out.println("x=" + req.getAttribute("x") + " y=" + req.getAttribute("y") + " r=" + req.getAttribute("r"));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("answer.jsp");
-        dispatcher.forward(req, resp);
+//        System.out.println("x=" + req.getAttribute("x") + " y=" + req.getAttribute("y") + " r=" + req.getAttribute("r"));
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("answer.jsp");
+//        dispatcher.forward(req, resp);
+        resp.sendRedirect("answer.jsp?x=" + req.getAttribute("x") + "&y=" + req.getAttribute("y") + "&r=" + req.getAttribute("r") + "&h=" + point.hit + "&s=true");
     }
 }

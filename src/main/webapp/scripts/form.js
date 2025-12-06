@@ -22,6 +22,12 @@ function setR(n) {
         document.querySelectorAll("#mR")[i].textContent = (-n).toString()
         document.querySelectorAll("#mR2")[i].textContent = (-n / 2).toString()
     }
+    document.querySelectorAll(".point").forEach(p => {
+        p.style.display = 'none'
+    })
+    document.querySelectorAll(".point.r" + (Math.round(n*10))).forEach(p => {
+        p.style.display = 'inline-block'
+    })
 }
 
 document.querySelectorAll('#calculate_form input[name="r"]')
@@ -53,11 +59,9 @@ svg.addEventListener('click', (event) => {
     svgPoint.x = (svgPoint.x-250) / 120 * r
     svgPoint.y = (250-svgPoint.y) / 120 * r
     console.log(`X: ${svgPoint.x}, Y: ${svgPoint.y}`);
-    // location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
-
     if (-4 <= svgPoint.x && svgPoint.x <= 4) {
         if (-5 <= svgPoint.y && svgPoint.y <= 3) {
-            location.href = "./control?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
+            location.href = ".?x=" + svgPoint.x + "&y=" + svgPoint.y + "&r=" + r
         } else {
             document.querySelector('#calculate_form input[name="y"]').setCustomValidity("y не в [-5,3]")
             document.querySelector('#calculate_form input[name="y"]').reportValidity()

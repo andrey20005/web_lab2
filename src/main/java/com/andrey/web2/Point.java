@@ -20,4 +20,11 @@ public class Point {
         this.y = y;
         this.r = r;
     }
+
+    public Point(double x, double y, double r, boolean hit) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.hit = hit;
+    }
 }

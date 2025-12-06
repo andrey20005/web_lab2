@@ -14,7 +14,9 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+
+    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.2.0-M1'
     // https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api
     implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:5.0.0-M1'
 }

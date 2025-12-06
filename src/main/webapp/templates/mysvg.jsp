@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.andrey.web2.Points" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="jakarta.enterprise.inject.spi.CDI" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Comparator" %><%--
   Created by IntelliJ IDEA.
   User: Andrey
   Date: 16.11.2025
@@ -56,20 +60,59 @@
     <text id="mR2" x="257" y="315" font-size="20" font-family="monospace">-R/2</text>
     <text id="mR" x="257" y="375" font-size="20" font-family="monospace">-R</text>
 
+
     <%
-        if (request.getAttribute("point") != null) {
-            Point point = (Point) request.getAttribute("point");
+    if (request.getAttribute("point") != null) {
+        Point point = (Point) request.getAttribute("point");
+        String color;
+        if (point.hit) color = "green";
+        else color = "red";
+    %>
+    <circle
+        r="10"
+        cx="<%= 250 + point.x / point.r * 120%>"
+        cy="<%= 250 + point.y / point.r * -120%>"
+        fill="<%=color%>"
+    ></circle>
+    <%
+    }
+    %>
+    <%
+        for (LocalDateTime time : points.keySet().stream().sorted(Comparator.reverseOrder()).toList()) {
+            Point point = points.get(time);
             String color;
             if (point.hit) color = "green";
             else color = "red";
     %>
-    <circle
-            r="6"
-            cx="<%= 250 + point.x / point.r * 120%>"
-            cy="<%= 250 + point.y / point.r * -120%>"
-            fill="<%=color%>"
-    >
+    <circle class="point r<%=(int) (point.r*10)%>"
+        r="3"
+        cx="<%= 250 + point.x / point.r * 120%>"
+        cy="<%= 250 + point.y / point.r * -120%>"
+        fill="<%=color%>"></circle>
     <%
         }
     %>
+<%--    <%--%>
+<%--    if (request.getParameter("r") != null) {--%>
+<%--        double r = Double.parseDouble(request.getParameter("r"));--%>
+<%--        Map<LocalDateTime, Point> points = CDI.current().select(Points.class).get().getPoints();--%>
+<%--        for (LocalDateTime time : points.keySet().stream().sorted(Comparator.reverseOrder()).toList()) {--%>
+<%--            Point p = points.get(time);--%>
+<%--            if (p.r == r) {--%>
+<%--                String color;--%>
+<%--                if (p.hit) color = "green";--%>
+<%--                else color = "red";--%>
+<%--    %>--%>
+<%--        <circle--%>
+<%--                r="5"--%>
+<%--                cx="<%= 250 + p.x / p.r * 120%>"--%>
+<%--                cy="<%= 250 + p.y / p.r * -120%>"--%>
+<%--                fill="<%=color%>"--%>
+<%--        >--%>
+<%--    <%--%>
+<%--            }--%>
+<%--        }--%>
+<%--    }--%>
+<%--    %>--%>
+
 </svg>
